@@ -29,17 +29,18 @@ public class UserService implements IUserService {
         user.setStatus("VERIFIED");
         Role userRole;
         //System.out.println(user.getCompany());
-        if(user.getCompany().equals("true")){
+        if((user.getCompany()!=null)){
             userRole = roleRepository.findByName("COMPANY_USER");
-            //System.out.println("Guardando como Empresa");
+            System.out.println("Guardando como Empresa");
         }else {
             user.setCompany("false");
             userRole = roleRepository.findByName("CLIENT_USER");
-            //System.out.println("Guardando como Usuario");
+            System.out.println("Guardando como Usuario");
         }
 
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
+        System.out.println("Guardando");
     }
 
     @Override
